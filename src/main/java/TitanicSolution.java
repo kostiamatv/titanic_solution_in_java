@@ -19,7 +19,7 @@ public class TitanicSolution {
     private static final String MODEL_OUTPUT_FILE = "model.txt";
 
 
-    private static DataFrame<Object> drop(DataFrame<Object> data, String[] columnsToDrop){
+    private static DataFrame<Object> drop(DataFrame<Object> data, String[] columnsToDrop) {
         for (String column : columnsToDrop) {
             data = data.drop(column);
         }
@@ -79,13 +79,12 @@ public class TitanicSolution {
             double prediction = 0.0;
             List row = testData.row(i);
             for (int j = 0; j < testData.columns().size(); j++) {
-                prediction = prediction +  (coef.get(j) * (Double)(row.get(j)));
+                prediction = prediction + (coef.get(j) * (Double) (row.get(j)));
             }
             boolean answer = prediction > 0;
-            if(answer){
+            if (answer) {
                 result.add(1);
-            }
-            else {
+            } else {
                 result.add(0);
             }
         }
@@ -93,9 +92,8 @@ public class TitanicSolution {
     }
 
 
-
     public static void main(String[] args) throws IOException {
-        DataFrame<Object> train = DataFrame.readCsv(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(GIVEN_TRAIN_FILE)),",", DataFrame.NumberDefault.DOUBLE_DEFAULT);
+        DataFrame<Object> train = DataFrame.readCsv(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(GIVEN_TRAIN_FILE)), ",", DataFrame.NumberDefault.DOUBLE_DEFAULT);
         DataFrame<Object> test = DataFrame.readCsv(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(GIVEN_TEST_FILE)), ",", DataFrame.NumberDefault.DOUBLE_DEFAULT);
         DataFrame<Object> sampleSubmission = DataFrame.readCsv(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(SUBMISSION_SAMPLE_FILE)));
 
