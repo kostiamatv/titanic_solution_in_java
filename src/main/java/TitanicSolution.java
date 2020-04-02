@@ -64,7 +64,8 @@ public class TitanicSolution {
 
     private static List<Double> readCoef(String filename) throws FileNotFoundException {
         ArrayList<Double> coefs = new ArrayList<>();
-        Scanner myReader = new Scanner(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(MODEL_OUTPUT_FILE)));
+        Scanner myReader = new Scanner(Objects.requireNonNull(
+                ClassLoader.getSystemResourceAsStream(MODEL_OUTPUT_FILE)));
         myReader.useLocale(Locale.US);
         while (myReader.hasNext()) {
             coefs.add(myReader.nextDouble());
@@ -93,9 +94,14 @@ public class TitanicSolution {
 
 
     public static void main(String[] args) throws IOException {
-        DataFrame<Object> train = DataFrame.readCsv(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(GIVEN_TRAIN_FILE)), ",", DataFrame.NumberDefault.DOUBLE_DEFAULT);
-        DataFrame<Object> test = DataFrame.readCsv(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(GIVEN_TEST_FILE)), ",", DataFrame.NumberDefault.DOUBLE_DEFAULT);
-        DataFrame<Object> sampleSubmission = DataFrame.readCsv(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(SUBMISSION_SAMPLE_FILE)));
+        DataFrame<Object> train = DataFrame.readCsv(
+                Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(GIVEN_TRAIN_FILE)), ",",
+                DataFrame.NumberDefault.DOUBLE_DEFAULT);
+        DataFrame<Object> test = DataFrame.readCsv(
+                Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(GIVEN_TEST_FILE)), ",",
+                DataFrame.NumberDefault.DOUBLE_DEFAULT);
+        DataFrame<Object> sampleSubmission = DataFrame.readCsv(
+                Objects.requireNonNull(ClassLoader.getSystemResourceAsStream(SUBMISSION_SAMPLE_FILE)));
 
         train = preprocess(train);
         DataFrame<Object> trainTarget = new DataFrame<>().add("Survived", train.col("Survived"));
