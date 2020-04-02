@@ -1,12 +1,12 @@
 import argparse
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LinearRegression
 
 
 def main(x_file, y_file, output_file):
     data = pd.read_csv(x_file)
     target = pd.read_csv(y_file)
-    lr = LogisticRegression()
+    lr = LinearRegression()
     lr.fit(data, target)
     with open(output_file, "w") as out:
         coef = lr.coef_[0]
